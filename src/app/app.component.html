@@ -19,6 +19,7 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4" #sideMenu>
     <!-- Brand Logo -->
     <a routerLink="/" class="brand-link">
+      <img ngSrc="/assets/logo.png" alt="{{'app.logo.alt' | transloco:{fediseer: 'Fediseer'} }}" class="brand-image img-circle elevation-3" style="opacity: .8" height="400" width="400">
       <span class="brand-text font-weight-light">Fediseer <small class="tiny">{{"app.gui.version" | transloco:{appVersion: appVersion} }}</small></span>
     </a>
 
@@ -33,7 +34,7 @@
                 <img *ngIf="guaranteesBadgeUrl" class="fediseer-badge" src="{{guaranteesBadgeUrl}}"
                      alt="{{'app.sidebar.guarantor_badge.alt_text' | transloco}}"/>
               </a>
-              <a routerLink="/endorsements/my" title="{{'app.sidebar.endorsements_badge.title' | transloco}}">
+              <a routerLink="/endorsements/my" title="{{'app.endorsements.my' | transloco}}">
                 <img *ngIf="endorsementsBadgeUrl" class="fediseer-badge" src="{{endorsementsBadgeUrl}}"
                      alt="{{'app.sidebar.endorsements_badge.alt_text' | transloco}}"/>
               </a>
@@ -181,13 +182,13 @@
             <a href="javascript:void(0)" (click)="openSwitchAccountModal(switchAccountModal)" class="nav-link">
               <i class="nav-icon fas fa-exchange-alt"></i>
               <p>
-                {{ "Switch account" }}
+                {{ "app.sidebar.switch_account" | transloco }}
               </p>
             </a>
 
             <ng-template #switchAccountModal let-modal>
                 <div class="modal-header">
-                  <h4 class="modal-title" id="modal-basic-title">Switch account</h4>
+                  <h4 class="modal-title" id="modal-basic-title">{{"app.switch_account.title" | transloco}}</h4>
                   <i class="fas fa-times cursor-pointer" (click)="modal.dismiss('x')"></i>
                 </div>
                 <div class="modal-body">
@@ -195,15 +196,15 @@
                     <tr *ngFor="let instance of availableAccounts | async">
                       <td>{{instance.name}}</td>
                       <td>
-                        <button class="btn btn-info" (click)="switchToInstance(instance)" [ngbTooltip]="instance.name === loggedInInstance.name ? 'You\'re already on this account' : null" [disabled]="instance.name === loggedInInstance.name">Switch</button>
+                        <button class="btn btn-info" (click)="switchToInstance(instance)" [ngbTooltip]="instance.name === loggedInInstance.name ? ('app.switch_account.already_on_this_account' | transloco) : null" [disabled]="instance.name === loggedInInstance.name">{{'app.switch_account.switch_button' | transloco}}</button>
                       </td>
                       <td>
-                        <button class="btn btn-danger" (click)="logoutFrom(instance)">Logout</button>
+                        <button class="btn btn-danger" (click)="logoutFrom(instance)">{{'app.logout' | transloco}}</button>
                       </td>
                     </tr>
                     <tr>
                       <td colspan="3" class="text-center">
-                        <button class="btn btn-primary" (click)="logout(false)">Add new account</button>
+                        <button class="btn btn-primary" (click)="logout(false)">{{'app.switch_account.add_account' | transloco}}</button>
                       </td>
                     </tr>
                   </table>
